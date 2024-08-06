@@ -1,0 +1,191 @@
+/* Define variables globales */
+:root {
+    /* Colores HEX */
+    --medium-blue: #1300c8; /* Azul medio */
+    --chrysler-blue: #1f12e0; /* Azul Chrysler */
+    --blue: #070dff; /* Azul */
+    --dodger-blue: #009aff; /* Azul Dodger */
+    --picton-blue: #00aaff; /* Azul Picton */
+    
+    /* Colores HSL (Opcional si necesitas usar HSL) */
+    --medium-blue-hsl: hsla(246, 100%, 39%, 1);
+    --chrysler-blue-hsl: hsla(244, 85%, 47%, 1);
+    --blue-hsl: hsla(239, 100%, 51%, 1);
+    --dodger-blue-hsl: hsla(204, 100%, 50%, 1);
+    --picton-blue-hsl: hsla(200, 100%, 50%, 1);
+
+    /* Gradientes */
+    --gradient-top: linear-gradient(0deg, var(--medium-blue), var(--chrysler-blue), var(--blue), var(--dodger-blue), var(--picton-blue));
+    --gradient-right: linear-gradient(90deg, var(--medium-blue), var(--chrysler-blue), var(--blue), var(--dodger-blue), var(--picton-blue));
+    --gradient-bottom: linear-gradient(180deg, var(--medium-blue), var(--chrysler-blue), var(--blue), var(--dodger-blue), var(--picton-blue));
+    --gradient-left: linear-gradient(270deg, var(--medium-blue), var(--chrysler-blue), var(--blue), var(--dodger-blue), var(--picton-blue));
+    --gradient-top-right: linear-gradient(45deg, var(--medium-blue), var(--chrysler-blue), var(--blue), var(--dodger-blue), var(--picton-blue));
+    --gradient-bottom-right: linear-gradient(135deg, var(--medium-blue), var(--chrysler-blue), var(--blue), var(--dodger-blue), var(--picton-blue));
+    --gradient-top-left: linear-gradient(225deg, var(--medium-blue), var(--chrysler-blue), var(--blue), var(--dodger-blue), var(--picton-blue));
+    --gradient-bottom-left: linear-gradient(315deg, var(--medium-blue), var(--chrysler-blue), var(--blue), var(--dodger-blue), var(--picton-blue));
+    --gradient-radial: radial-gradient(var(--medium-blue), var(--chrysler-blue), var(--blue), var(--dodger-blue), var(--picton-blue));
+
+    /* Otros colores y variables */
+    --primary-color: var(--medium-blue); /* Color principal */
+    --primary-hover: var(--dodger-blue); /* Color del hover */
+    --text-color: #333; /* Color del texto */
+    --background-color: #f0f0f0; /* Color de fondo */
+    --border-color: var(--chrysler-blue); /* Color del borde */
+    --focus-border-color: var(--blue); /* Color del borde al enfocar */
+    --box-shadow-color: rgba(0, 154, 255, 0.25); /* Color de la sombra al enfocar */
+    --font-family: 'Arial', sans-serif; /* Fuente principal */
+
+    --input-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajusta el valor según tus preferencias */
+}
+
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: auto; /* Permite el scroll en el cuerpo */
+    background: var(--gradient-top-right);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    font-family: var(--font-family);
+    color: var(--text-color);
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa toda la altura de la ventana */
+    padding: 20px;
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columnas */
+    grid-template-rows: repeat(7, auto);  /* 7 filas con altura automática */
+    gap: 1rem; /* Espacio entre los elementos */
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    box-sizing: border-box; /* Incluye el padding en el tamaño total del contenedor */
+    overflow: auto; /* Permite el scroll dentro del formulario si el contenido excede el tamaño */
+    animation: formAnimation 1s ease-in-out;
+}
+
+.card {
+    grid-column: 1 / -1; /* La tarjeta ocupa toda la fila */
+}
+
+@keyframes formAnimation {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-custom {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-custom:hover {
+    background-color: var(--primary-hover);
+}
+
+.form-select,
+.form-control {
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    transition: border-color 0.3s ease;
+    margin-bottom: 1rem; /* Agrega margen inferior */
+    box-shadow: var(--input-shadow); /* Agrega sombra al contenedor de entrada */
+}
+
+.form-select:focus,
+.form-control:focus {
+    border-color: var(--focus-border-color);
+    box-shadow: 0 0 0 0.2rem var(--box-shadow-color);
+}
+
+.form-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem; /* Agrega margen inferior a la etiqueta */
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+    content: '✔';
+    position: absolute;
+    top: .1em; left: .3em;
+    font-size: 1.3em;
+    line-height: 0.8;
+    color: var(--primary-color);
+    transition: all .2s;
+}
+
+[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+}
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 1.25em; height: 1.25em;
+    border: 2px solid var(--border-color);
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+
+/* Responsive styles */
+
+/* Para dispositivos móviles */
+@media (max-width: 576px) {
+    .form-container {
+        padding: 15px;
+    }
+}
+
+/* Para tabletas (en orientación vertical) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .form-container {
+        padding: 20px;
+    }
+}
+
+/* Para tabletas (en orientación horizontal) y laptops pequeñas */
+@media (min-width: 769px) and (max-width: 992px) {
+    .form-container {
+        padding: 25px;
+    }
+}
+
+/* Para laptops grandes y computadoras de escritorio */
+@media (min-width: 993px) {
+    .form-container {
+        padding: 30px;
+    }
+}
